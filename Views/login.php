@@ -23,7 +23,7 @@ if (isset($_SESSION['usuario_logueado'])) {  // si el usuario estuviera ya logea
         unset($_GET['error']);
     }
     ?>
-    <form action="index.php?action=authenticate" method="POST">
+    <form action="../index.php?action=authenticate" method="POST">
         <input type="idusuario" name="idusuario" placeholder="Identificador Usuario" required><br><br>
         <input type="password" name="password" placeholder="Contraseña" required><br><br>
         <button type="submit" name="login">Ingresar</button>

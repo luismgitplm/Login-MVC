@@ -12,7 +12,7 @@ session_start();        // habría que comprobar que hay token de sesion
 <body>
     <h2>Bienvenido al Dashboard, <?php echo $_SESSION['idusuario'] ?></h2>
     <p>Has iniciado sesión correctamente</p>
-    <a href="index.php?action=login">Cerrar sesión (Volver al login)</a>
+    <a href="index.php?action=logout">Cerrar sesión (Volver al login)</a>
 </body>
 
 </html>

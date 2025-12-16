@@ -25,12 +25,11 @@ class AuthController                                   // la clase AuthControlle
             if ($this->userModel->login($username, $password)) {
                 // Autenticación exitosa, iniciar sesión y redirigir al enrutador para que éste envíe al dashboard-inicio
                 $_SESSION['idusuario'] = $username;
-                header('Location: index.php?action=dashboard');
                 exit();
             } else {
                 // Autenticación fallida, recargar login con error que mostraría mensaje
                 $_GET['error'] = "Usuario o contraseña incorrectos.";
-                include 'Views/login.php?action=login&error=si';
+                include 'Views/login.php';
             }
         }
     }
