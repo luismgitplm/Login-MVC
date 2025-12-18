@@ -1,6 +1,5 @@
 <?php
 // views/login.php
-session_start();
 if (isset($_SESSION['usuario_logueado'])) {  // si el usuario estuviera ya logeado, lo derivamos al inicio interno
     header("Location: ./dashboard.php");    // nosotros haremos comprobación de token
     exit();
@@ -24,6 +23,7 @@ if (isset($_SESSION['usuario_logueado'])) {  // si el usuario estuviera ya logea
     }
     ?>
     <form action="/Login-MVC/index.php?action=authenticate" method="POST">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"><!-- token enviado oculto -->
         <input type="idusuario" name="idusuario" placeholder="Identificador Usuario" required><br><br>
         <input type="password" name="password" placeholder="Contraseña" required><br><br>
         <button type="submit" name="login">Ingresar</button>
