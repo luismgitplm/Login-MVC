@@ -4,8 +4,8 @@ class Database
 {
     private $host = 'localhost';
     private $db_name = 'login-php';
-    private $username = 'php-login';
-    private $password = '1234#hola';
+    private $username = 'root';
+    private $password = '';
     public $PDO;
 
     public function getConnection()
@@ -20,3 +20,4 @@ class Database
         return $this->PDO;
     }
 }
+

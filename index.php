@@ -1,7 +1,7 @@
 <?php
 
-require_once 'Controllers/AuthController.php';  // el controlador de autentificación y
-require_once 'Models/Usuario.php';                 // el modelo de usuarios son cargados al empezar
+require_once 'controllers/AuthController.php';  // el controlador de autentificación y
+require_once 'models/User.php';                 // el modelo de usuarios son cargados al empezar
 																								// ambos son declaraciones de clases -> orientación a objetos pura
 // Iniciar sesión
 session_start();

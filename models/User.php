@@ -1,4 +1,4 @@
-<?php require_once 'Config/Database.php';                      // incluimos el código de conexión a la BD
+<?php require_once 'config/Database.php';                      // incluimos el código de conexión a la BD
 
 class Usuario
 {

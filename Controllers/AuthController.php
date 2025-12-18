@@ -13,7 +13,7 @@ class AuthController                                   // la clase AuthControlle
     public function login()                           // aquí ejecuta el login (en realidad, la vista login)
     {
         // Carga la vista del formulario de login
-        include 'Views/login.php';
+        include 'views/login.php';
     }
 
     public function authenticate()                    // aquí confronta con la base de datos
@@ -25,11 +25,12 @@ class AuthController                                   // la clase AuthControlle
             if ($this->userModel->login($username, $password)) {
                 // Autenticación exitosa, iniciar sesión y redirigir al enrutador para que éste envíe al dashboard-inicio
                 $_SESSION['idusuario'] = $username;
+                header('Location: index.php?action=dashboard');
                 exit();
             } else {
                 // Autenticación fallida, recargar login con error que mostraría mensaje
                 $_GET['error'] = "Usuario o contraseña incorrectos.";
-                include 'Views/login.php';
+                include 'views/login.php'; 
             }
         }
     }
@@ -42,7 +43,7 @@ class AuthController                                   // la clase AuthControlle
             exit();
         }
         // Carga la vista del dashboard (página de bienvenida)
-        include 'Views/dashboard.php';
+        include 'views/dashboard.php';
     }
 
     public function logout()

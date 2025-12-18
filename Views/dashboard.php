@@ -1,5 +1,5 @@
 <?php
-// views/login.php
+// views/dashboard.php
 session_start();        // habría que comprobar que hay token de sesion
 ?>
 <html lang="es">
