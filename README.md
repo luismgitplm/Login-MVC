@@ -1,14 +1,45 @@
-Login básico utilizando el patrón arquitectónico Modelo Vista Controlador. 
-El acceso a la base de datos es gestionado por una clase (Database.php) que emplea el método PDO.
-La clase User.php contiene el método login, que se ayuda de la clase anterior para comprobar que los datos
-indicados por el formulario coinciden con los almacenados en la base de datos. A su vez, esta clase es utilizada
-por el controlador (AuthController.php) en el método authenticate para realizar dicha comprobación. El controlador, 
-además, contiene los métodos login, dashboard y logout, que son utilizados
-por el archivo index.php para redireccionar al usuario según distintos contextos explicitados mediante $_REQUEST['action'].
-index.php es el archivo que primero se ejecuta, al encontrarse en la carpeta raíz. Su acción por defecto es enviar al login.
-La validación de los campos relevantes del formulario se realiza mediante el archivo validacion.js. Este archivo se asegura de
-que los campos nombre (idusuario) y contraseña (password) no contengan caracteres potencialmente peligrosos. Además, comprueba
-que la contraseña tenga al menos 8 caracteres y, por lo menos, una mayúscula, una minúscula y un dígito. Desde el formulario
-se envía de forma oculta un token de sesión que servirá como protección ante accesos no autorizados. El caso más importante en
-el que entra en juego es si alguien intenta acceder directamente a la página final (dashboard.php) mediante URL. En este caso
-se reenvía directamente al login indicando la necesidad de iniciar sesión.
+# Login Básico con MVC
+
+Este proyecto implementa un sistema de login básico utilizando el patrón arquitectónico **Modelo Vista Controlador (MVC)**. A continuación, se describen los principales componentes y su funcionamiento:
+
+## Componentes del Proyecto
+
+### 1. **Base de Datos (Database.php)**
+El acceso a la base de datos es gestionado por la clase `Database.php`, que utiliza el método **PDO** para realizar las operaciones necesarias.
+
+### 2. **Usuario (User.php)**
+El archivo `User.php` (clase Usuario) contiene el método `login`, que se apoya en la clase `Database.php` para comprobar que los datos proporcionados por el formulario coinciden con los almacenados en la base de datos.
+
+### 3. **Controlador de Autenticación (AuthController.php)**
+El controlador `AuthController.php` se encarga de realizar la comprobación de las credenciales a través del método `authenticate`. Además, contiene los métodos:
+- `login`
+- `dashboard`
+- `logout`
+
+Estos métodos son utilizados por el archivo `index.php` para redirigir al usuario según el contexto indicado mediante `$_REQUEST['action']`.
+
+### 4. **Archivo Principal (index.php)**
+El archivo `index.php` es el punto de entrada del proyecto y se encuentra en la carpeta raíz. Su acción por defecto es redirigir al formulario de **login**. Dependiendo del valor de `$_REQUEST['action']`, el controlador gestionará distintas acciones como el login, el dashboard o el logout.
+
+### 5. **Validación del Formulario (validacion.js)**
+La validación de los campos relevantes del formulario se realiza mediante el archivo `validacion.js`. Este archivo se asegura de que:
+- Los campos **nombre de usuario (idusuario)** y **contraseña (password)** no contengan caracteres potencialmente peligrosos.
+- La contraseña tenga al menos 8 caracteres, incluya una mayúscula, una minúscula y un dígito.
+
+### 6. **Protección de Sesión**
+Desde el formulario de login, se envía un token de sesión de manera oculta, lo que sirve como protección ante accesos no autorizados. Un caso importante de protección es cuando un usuario intenta acceder directamente a la página **dashboard.php** mediante la URL sin haber iniciado sesión. En este caso, se redirige automáticamente al formulario de login, indicando la necesidad de autenticación.
+
+### 7. **Encriptación de la contraseña**
+El campo de la contraseña se encuentra encriptado en la base de datos. Para que el acceso a través del formulario sea correcto, en el método login de la clase Usuario se verifica que la contraseña indicada coincida con su versión encriptada mediante el método password_verify
+
+**Pista muy importante sobre esto en los comentarios del dump de la base de datos**
+
+---
+
+## Requisitos
+- PHP 7.4 o superior.
+- Servidor web con soporte para **PDO**.
+
+---
+
+Este proyecto es ideal para comprender los principios básicos del patrón MVC y la gestión de autenticación simple con PHP.
