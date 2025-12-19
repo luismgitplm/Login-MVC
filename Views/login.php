@@ -5,32 +5,70 @@ if (isset($_SESSION['usuario_logueado'])) {  // si el usuario estuviera ya logea
     exit();
 }
 ?>
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <title>Formulario de registro</title>
 </head>
+<body class="bg-primary-subtle">
+    <div id="wrapper" class="container d-flex justify-content-center align-items-center text-center  min-vh-100">
+    <form action="/Login-MVC/index.php?action=authenticate" method="post" id="formulario">
+        <div>
+            <h3>Inicie Sesión</h3>
+        </div>
 
-<body>
-    <!-- aquí podríamos hacer un include de una cabecera común, si la hubiera, que incluyera incluso todas las etiquetas HTML anteriores -->
+        <!-- Aquí se mostrarán los errores desde dentro de la aplicación-->
+         <?php
+            if (isset($_GET['error'])){
+                echo '<div class = "alert alert-danger">';
+                echo $_GET['error'];
+                echo '</div>';
+                unset($_GET['error']);
+            }
+         ?>
 
-    <h1>Iniciar Sesión</h1>
-    <?php
-    if (isset($_GET['error'])) {
-        echo '<p style="color: red;">' . $_GET['error'] . "</p>";       
-        unset($_GET['error']);
-    }
-    ?>
-    <form action="/Login-MVC/index.php?action=authenticate" method="POST">
-        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"><!-- token enviado oculto -->
-        <input type="idusuario" name="idusuario" placeholder="Identificador Usuario" required><br><br>
-        <input type="password" name="password" placeholder="Contraseña" required><br><br>
-        <button type="submit" name="login">Ingresar</button>
+        <div class="row mb-4">
+            <div class="col">
+            <div data-mdb-input-init class="form-outline">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"><!-- token enviado oculto -->
+                <input type="text" id="idusuario" name="idusuario" class="form-control" />
+                <label class="form-label" for="idusuario">Nombre</label>
+                <div id = "idusuarioCorreccion" class = "form-text text-danger"></div>
+            </div>
+            </div>
+            <div class="col">
+            <div data-mdb-input-init class="form-outline">
+                <input type="text" id="apellidos" name="apellidos" class="form-control" />
+                <label class="form-label" for="apellidos">Apellidos</label>
+            </div>
+            </div>
+        </div>
+
+        
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" id="email" name="email" class="form-control" />
+            <label class="form-label" for="email">Email</label>
+        </div>
+
+        
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" id="password" name="password" class="form-control" />
+            <label class="form-label" for="password">Contraseña</label>
+            <div id = "passwordCorreccion" class = "form-text text-danger"></div>
+        </div>
+
+       
+        <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Enviar</button>
+        <div id = "envioCorreccion" class = "form-text text-danger"></div>
+
     </form>
-    
-    <!-- aquí podríamos hacer un include de un pie común, si lo hubiera, que incluyera incluso todas las etiquetas HTML posteriores -->
-    
-</body>
+    </div>
 
+    <script src="/Login-MVC/views/validacion.js"></script>
+</body>
 </html>

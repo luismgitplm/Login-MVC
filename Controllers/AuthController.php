@@ -34,9 +34,12 @@ class AuthController                                   // la clase AuthControlle
                     $_GET['error'] = "Usuario o contraseña incorrectos.";
                     include 'views/login.php'; 
                 }
+            } else {
+                header('Location: index.php?action=login&error=Debe iniciar sesión para continuar');
+                exit();
             }
         } else {
-            header('Location: index.php?action=login&error=csrf');
+            header('Location: index.php?action=login&error=Error inesperado, inicie sesión');
             exit();
         }
     }
