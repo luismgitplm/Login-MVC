@@ -25,7 +25,7 @@ if (isset($_GET['csrf_token']) && $_GET['csrf_token'] !== $_SESSION['csrf_token'
 
 <body>
     <h2>Bienvenido al Dashboard, <?php echo $_SESSION['idusuario'] ?></h2>
-    <p>Has iniciado sesión correctamente y los cambios de seguridad funcionan por ahora</p>
+    <p>Has iniciado sesión correctamente</p>
     <a href="index.php?action=logout">Cerrar sesión (Volver al login)</a>
 </body>
 
