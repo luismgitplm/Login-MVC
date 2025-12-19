@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let idValido;
     let passValida;
 
+    // Validación del campo idusuario (nombre). Se comprueba que no contenga caracteres potencialmente peligrosos
     idusuario.addEventListener('input', () => {
         const mensaje = document.getElementById("idusuarioCorreccion");
 
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     })
 
+    /* Validación del campo password (contraseña). Se comprueba que no contenga caracteres potencialmente peligrosos y 
+        que contenga al menos 8 caracteres, entre ellos mayúsculas, minúsculas y algún dígito */
     password.addEventListener('input', () => {
         const mensaje = document.getElementById("passwordCorreccion");
         const regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/; 
@@ -40,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     })
 
+    // Comprobación de las variables boolean que validan ambos campos antes de enviar
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
         const mensaje = document.getElementById("envioCorreccion");
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (passValida && idValido) formulario.submit();
     })
 
+    // Función que comprueba si una cadena de texto contiene algún caracter potencialmente peligroso
     function contieneCaracteresPeligrosos(texto){
         const regex = /[<>'"&]/;
 
