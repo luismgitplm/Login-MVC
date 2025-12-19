@@ -1,4 +1,5 @@
 <?php
+// Control de acceso no autorizado mediante URL
 session_start();
 if (!isset($_POST['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']){
     header('Location: /Login-MVC/index.php?action=login&error=Debes iniciar sesión para continuar');
